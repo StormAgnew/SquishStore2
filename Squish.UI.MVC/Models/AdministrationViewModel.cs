@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using SquishStore.UI.MVC.Models;
 
-namespace [YourProjectName].UI.MVC.Models
+
+namespace SquishStore.UI.MVC.Models
 {
     public class CreateRoleViewModel
     {
