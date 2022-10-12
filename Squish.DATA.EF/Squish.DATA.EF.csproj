@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Squish.UI.MVC\Squish.UI.MVC.csproj" />
+  </ItemGroup>
+
 </Project>

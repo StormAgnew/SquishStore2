@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squish.UI.MVC", "Squish.UI.MVC\Squish.UI.MVC.csproj", "{881802A9-DEE5-4F1A-8143-6295E517FA01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squish.DATA.EF", "Squish.DATA.EF\Squish.DATA.EF.csproj", "{32BCBDC1-4912-4A61-BD9A-37F991C3F2DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{881802A9-DEE5-4F1A-8143-6295E517FA01} = {881802A9-DEE5-4F1A-8143-6295E517FA01}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
