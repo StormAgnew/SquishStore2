@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Squish.DATA.EF.Models.SquishInformation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Squishname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seasonalid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SquishSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SquishColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Species)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Squishname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seasonalid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SquishSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SquishColor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Species.SpeciesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.StatusId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SquishId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SquishId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SquishId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
