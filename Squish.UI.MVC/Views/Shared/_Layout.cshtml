@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -59,21 +64,16 @@
 							<ul>
 								<li class="current-list-item">
 									<a href="@Url.Action("Index","Home")">Home</a>
-									<ul class="sub-menu">
-										<li><a href="index.html">Static Home</a></li>
-										<li><a href="index_2.html">Slider Home</a></li>
-									</ul>
 								</li>
 								<li><a href="@Url.Action("About","Home")">About</a></li>
 								
 								<li>
-									<a href="@Url.Action("News","Home")">News</a>
-									<ul class="sub-menu">
-										<li><a href="news.html">News</a></li>
-										<li><a href="single-news.html">Single News</a></li>
-									</ul>
+									<a href="@Url.Action("News","Home")">News</a>	
 								</li>
 								<li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+								
+								<partial name="_LoginPartial" />
+								
 								<li>
 									<a href="@Url.Action("Shop","Home")">Shop</a>
 									<ul class="sub-menu">
@@ -209,6 +209,8 @@
 	<script src="~/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="~/assets/js/main.js"></script>
+
+	@RenderSection("scripts", false)
 
 </body>
 </html>
