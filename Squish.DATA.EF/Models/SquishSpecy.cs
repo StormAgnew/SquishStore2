@@ -7,13 +7,13 @@ namespace Squish.DATA.EF.Models
     {
         public SquishSpecy()
         {
-            SquishInformations = new HashSet<SquishInformation>();
+            SquishInformation = new HashSet<SquishInformation>();
         }
 
         public int SpeciesId { get; set; }
         public string SpeciesName { get; set; } = null!;
         public string? SpeciesDescription { get; set; }
 
-        public virtual ICollection<SquishInformation> SquishInformations { get; set; }
+        public virtual ICollection<SquishInformation>? SquishInformation { get; set; }
     }
 }

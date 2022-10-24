@@ -20,8 +20,8 @@ namespace Squish.DATA.EF.Models
         public decimal Price { get; set; }
         public int? StatusId { get; set; }
 
-        public virtual SquishSpecy Species { get; set; } = null!;
+        public virtual SquishSpecy? Species { get; set; } = null!;
         public virtual Status? Status { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order>? Orders { get; set; }
     }
 }

@@ -38,15 +38,13 @@ namespace Squish.DATA.EF.Models//.Metadata
 	#endregion
 
 	#region Shipping
-	[ModelMetadataType(typeof(ShippingMetadata))]
+	[ModelMetadataType(typeof(ShippingInformationMetadata))]
 	public partial class Shipping { }
 	#endregion
 
 	#region UserAccount
 	[ModelMetadataType(typeof(UserAccountMetadata))]
-	public partial class UserAccount 
-	{ 
-		//public string FullName { get { return $"{FirstName} {LastName}"; } } NOT FUNCTIONAL
-	}
+	public partial class UserAccount { }
+	
 	#endregion
 }
