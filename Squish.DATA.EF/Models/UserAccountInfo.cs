@@ -7,7 +7,7 @@ namespace Squish.DATA.EF.Models
     {
         public UserAccountInfo()
         {
-            ShippingInformations = new HashSet<ShippingInformation>();
+            ShippingInformation = new HashSet<ShippingInformation>();
         }
 
         public string UserId { get; set; } = null!;
@@ -18,6 +18,6 @@ namespace Squish.DATA.EF.Models
         public string? State { get; set; }
         public string? ZipCode { get; set; }
 
-        public virtual ICollection<ShippingInformation> ShippingInformations { get; set; }
+        public virtual ICollection<ShippingInformation>? ShippingInformation { get; set; }
     }
 }

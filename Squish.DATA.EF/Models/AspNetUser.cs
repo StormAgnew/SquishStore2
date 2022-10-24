@@ -29,10 +29,10 @@ namespace Squish.DATA.EF.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
 
-        public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
+        public virtual ICollection<AspNetUserClaim>? AspNetUserClaims { get; set; }
+        public virtual ICollection<AspNetUserLogin>? AspNetUserLogins { get; set; }
+        public virtual ICollection<AspNetUserToken>? AspNetUserTokens { get; set; }
 
-        public virtual ICollection<AspNetRole> Roles { get; set; }
+        public virtual ICollection<AspNetRole>? Roles { get; set; }
     }
 }

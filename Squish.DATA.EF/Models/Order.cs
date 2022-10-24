@@ -14,7 +14,7 @@ namespace Squish.DATA.EF.Models
         public int Quantity { get; set; }
         public int SquishId { get; set; }
 
-        public virtual SquishInformation Squish { get; set; } = null!;
-        public virtual ICollection<ShippingInformation> ShippingInformations { get; set; }
+        public virtual SquishInformation? Squish { get; set; } = null!;
+        public virtual ICollection<ShippingInformation>? ShippingInformations { get; set; }
     }
 }

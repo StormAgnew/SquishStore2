@@ -16,18 +16,18 @@ namespace Squish.DATA.EF.Models
         {
         }
 
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; } = null!;
-        public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; } = null!;
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; } = null!;
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } = null!;
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
-        public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
-        public virtual DbSet<Order> Orders { get; set; } = null!;
-        public virtual DbSet<ShippingInformation> ShippingInformations { get; set; } = null!;
-        public virtual DbSet<SquishInformation> SquishInformations { get; set; } = null!;
-        public virtual DbSet<SquishSpecy> SquishSpecies { get; set; } = null!;
-        public virtual DbSet<Status> Statuses { get; set; } = null!;
-        public virtual DbSet<UserAccountInfo> UserAccountInfo { get; set; } = null!;
+        public virtual DbSet<AspNetRole>? AspNetRoles { get; set; } = null!;
+        public virtual DbSet<AspNetRoleClaim>? AspNetRoleClaims { get; set; } = null!;
+        public virtual DbSet<AspNetUser>? AspNetUsers { get; set; } = null!;
+        public virtual DbSet<AspNetUserClaim>? AspNetUserClaims { get; set; } = null!;
+        public virtual DbSet<AspNetUserLogin>? AspNetUserLogins { get; set; } = null!;
+        public virtual DbSet<AspNetUserToken>? AspNetUserTokens { get; set; } = null!;
+        public virtual DbSet<Order>? Orders { get; set; } = null!;
+        public virtual DbSet<ShippingInformation>? ShippingInformations { get; set; } = null!;
+        public virtual DbSet<SquishInformation>? SquishInformations { get; set; } = null!;
+        public virtual DbSet<SquishSpecy>? SquishSpecies { get; set; } = null!;
+        public virtual DbSet<Status>? Statuses { get; set; } = null!;
+        public virtual DbSet<UserAccountInfo>? UserAccountInfo { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -189,7 +189,7 @@ namespace Squish.DATA.EF.Models
                     .HasConstraintName("FK_ShippingInformation_Orders");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.ShippingInformations)
+                    .WithMany(p => p.ShippingInformation)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ShippingInformation_UserAccountInfo");
@@ -223,7 +223,7 @@ namespace Squish.DATA.EF.Models
                 entity.Property(e => e.StatusId).HasColumnName("StatusID");
 
                 entity.HasOne(d => d.Species)
-                    .WithMany(p => p.SquishInformations)
+                    .WithMany(p => p.SquishInformation)
                     .HasForeignKey(d => d.SpeciesId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Squish_SquishSpecies1");

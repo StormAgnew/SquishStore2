@@ -14,6 +14,6 @@ namespace Squish.DATA.EF.Models
         public int? OutofStock { get; set; }
         public int StatusId { get; set; }
 
-        public virtual ICollection<SquishInformation> SquishInformations { get; set; }
+        public virtual ICollection<SquishInformation>? SquishInformations { get; set; }
     }
 }

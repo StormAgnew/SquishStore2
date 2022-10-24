@@ -10,6 +10,7 @@ namespace Squish.DATA.EF//.Metadata
     #region SquishSpecies
     public class SquishSpeciesMetadata
     {
+        //PK
         public int SpeciesID { get; set; }
 
         [Required (ErrorMessage = "You need a name for the Species!")]
@@ -27,14 +28,17 @@ namespace Squish.DATA.EF//.Metadata
     #region SquishInformation
     public class SquishInformationMetadata
     {
+        //PK
         public int SquishID { get; set; }
 
         [Required (ErrorMessage = "Your squish must have a name!")]
         [StringLength(150)]
         public string SquishName { get; set; }
 
+
         public int SpeciesID { get; set; } //FK
 
+        [StringLength(50)]
         public string? SpeciesDescription { get; set; } //FK Unknown if needed, will ask about
 
 
@@ -42,14 +46,14 @@ namespace Squish.DATA.EF//.Metadata
         public string? Descritption { get; set; }
 
         
-        public int Seasonalid { get; set; }
+        public int Seasonalid { get; set; } //FK
 
         [StringLength (50)]
         public string? SquishSize { get; set; }
 
         [StringLength(50)]
         public string? SquishColor { get; set; }
-
+            
 
         [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString ="{0:c}")]
         [Display(Name = "Price")]
@@ -60,6 +64,8 @@ namespace Squish.DATA.EF//.Metadata
         public int StatusID { get; set; }
 
 
+        [StringLength(100)]
+        [Display(Name = "Image")]
         public string? SquishPic { get; set; }
 
     }
@@ -72,6 +78,7 @@ namespace Squish.DATA.EF//.Metadata
 
         public int? OutofStock { get; set;  }
 
+        //PK
         public int StatusID { get; set;  }
     }
     #endregion
@@ -79,6 +86,7 @@ namespace Squish.DATA.EF//.Metadata
     #region Orders
     public class OrderMetadata
     {
+        //PK
         public int OrderID { get; set; }  
 
         public int Quantity { get; set; }
@@ -90,6 +98,7 @@ namespace Squish.DATA.EF//.Metadata
     #region Shipping
     public class ShippingInformationMetadata
     {
+        //PK
         public int ShippingID { get; set; }
 
         
