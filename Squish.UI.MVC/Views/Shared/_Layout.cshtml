@@ -55,7 +55,7 @@
 						<!-- logo TODO: Make Logo -->
 						<div class="site-logo">
 							<a href="index.html">
-								<img src="assets/img/logo.png" alt="">
+								<img src="assets/img/SquishPics/RenderedSquishLogo(1).jpg" alt="">
 							</a>
 						</div>
 						<!-- logo -->
@@ -67,29 +67,26 @@
 								</li>
 								<li><a href="@Url.Action("About","Home")">About</a></li>
 								
-								<li>
-									<a href="@Url.Action("News","Home")">News</a>	
-								</li>
 								<li><a href="@Url.Action("Contact","Home")">Contact</a></li>
 								
 								<partial name="_LoginPartial" />
 								
 								<li>
-									<a href="@Url.Action("Shop","Home")">Shop</a>
+									<a href="@Url.Action("Index","SquishInformations")">Shop</a>
 									<ul class="sub-menu">
-										<li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
+										<li><a href=@Url.Action("Index","SquishInformations")>Shop</a></li>
 										<li><a href="single-product.html">Single Product</a></li>
-										<li><a href="cart.html">Cart</a></li>
+										<li><a class="nav-link" asp-action="Index" asp-controller="ShoppingCart">Shopping Cart</a></li>
 									</ul>
+										
 								</li>
 								<li>
 									<div class="header-icons">
-										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										<a class="shopping-cart" href=@Url.Action("Index","ShoppingCart")><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
 							</ul>
+									
 						</nav>
 						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 						<div class="mobile-menu"></div>
@@ -127,16 +124,16 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box about-widget">
-						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+						<h2 class="widget-title">Hey there!</h2>
+						<p>Thank you for visiting Sea of Squishmallows! If you have any comments, or concerns, please send us a message! We'd be happy to help!</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Get in Touch</h2>
 						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
+							<li>1234 Cool Street, KC MO</li>
+							<li>support@seaofsquish.com</li>
 							<li>+00 111 222 3333</li>
 						</ul>
 					</div>
@@ -148,15 +145,15 @@
 							<li><a href="index.html">Home</a></li>
 							<li><a href="about.html">About</a></li>
 							<li><a href="services.html">Shop</a></li>
-							<li><a href="news.html">News</a></li>
 							<li><a href="contact.html">Contact</a></li>
+							
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box subscribe">
 						<h2 class="widget-title">Subscribe</h2>
-						<p>Subscribe to our mailing list to get the latest updates.</p>
+						<p>Subscribe to our mailing list to get the latest sales information on our squish!</p>
 						<form action="index.html">
 							<input type="email" placeholder="Email">
 							<button type="submit"><i class="fas fa-paper-plane"></i></button>
@@ -172,7 +169,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.</p>
+					<p>Copyrights &copy; 2022 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved. Thank you for providing this base!</p>
 				</div>
 				<div class="col-lg-6 text-right col-md-12">
 					<div class="social-icons">

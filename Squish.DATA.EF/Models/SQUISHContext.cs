@@ -16,25 +16,25 @@ namespace Squish.DATA.EF.Models
         {
         }
 
-        public virtual DbSet<AspNetRole>? AspNetRoles { get; set; } = null!;
-        public virtual DbSet<AspNetRoleClaim>? AspNetRoleClaims { get; set; } = null!;
-        public virtual DbSet<AspNetUser>? AspNetUsers { get; set; } = null!;
-        public virtual DbSet<AspNetUserClaim>? AspNetUserClaims { get; set; } = null!;
-        public virtual DbSet<AspNetUserLogin>? AspNetUserLogins { get; set; } = null!;
-        public virtual DbSet<AspNetUserToken>? AspNetUserTokens { get; set; } = null!;
+        public virtual DbSet<AspNetRole>? AspNetRoles { get; set; }
+        public virtual DbSet<AspNetRoleClaim>? AspNetRoleClaims { get; set; }
+        public virtual DbSet<AspNetUser>? AspNetUsers { get; set; }
+        public virtual DbSet<AspNetUserClaim>? AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin>? AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUserToken>? AspNetUserTokens { get; set; }
         public virtual DbSet<Order>? Orders { get; set; } = null!;
-        public virtual DbSet<ShippingInformation>? ShippingInformations { get; set; } = null!;
-        public virtual DbSet<SquishInformation>? SquishInformations { get; set; } = null!;
-        public virtual DbSet<SquishSpecy>? SquishSpecies { get; set; } = null!;
-        public virtual DbSet<Status>? Statuses { get; set; } = null!;
-        public virtual DbSet<UserAccountInfo>? UserAccountInfo { get; set; } = null!;
+        public virtual DbSet<ShippingInformation>? ShippingInformations { get; set; }
+        public virtual DbSet<SquishInformation>? SquishInformations { get; set; }
+        public virtual DbSet<SquishSpecy>? SquishSpecies { get; set; }
+        public virtual DbSet<Status>? Statuses { get; set; }
+        public virtual DbSet<UserAccountInfo>? UserAccountInfo { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.\\sqlexpress;Database=SQUISH;Trusted_Connection=true;MultipleActiveResultSets=true;");
+                optionsBuilder.UseSqlServer("Server=.\\sqlexpress;database=SQUISH;trusted_connection=true;multipleactiveresultsets=true;");
             }
         }
 
@@ -131,13 +131,9 @@ namespace Squish.DATA.EF.Models
 
             modelBuilder.Entity<Order>(entity =>
             {
-                entity.Property(e => e.OrderId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("OrderID");
+                entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
-                entity.Property(e => e.SquishId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("SquishID");
+                entity.Property(e => e.SquishId).HasColumnName("SquishID");
 
                 entity.HasOne(d => d.Squish)
                     .WithMany(p => p.Orders)
@@ -152,9 +148,7 @@ namespace Squish.DATA.EF.Models
 
                 entity.ToTable("ShippingInformation");
 
-                entity.Property(e => e.ShippingId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ShippingID");
+                entity.Property(e => e.ShippingId).HasColumnName("ShippingID");
 
                 entity.Property(e => e.Address).HasMaxLength(250);
 
@@ -164,9 +158,7 @@ namespace Squish.DATA.EF.Models
 
                 entity.Property(e => e.Lastname).HasMaxLength(50);
 
-                entity.Property(e => e.OrderId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("OrderID");
+                entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
                 entity.Property(e => e.State)
                     .HasMaxLength(2)
@@ -189,7 +181,7 @@ namespace Squish.DATA.EF.Models
                     .HasConstraintName("FK_ShippingInformation_Orders");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.ShippingInformation)
+                    .WithMany(p => p.ShippingInformations)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ShippingInformation_UserAccountInfo");
@@ -202,19 +194,17 @@ namespace Squish.DATA.EF.Models
 
                 entity.ToTable("SquishInformation");
 
-                entity.Property(e => e.SquishId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("SquishID");
+                entity.Property(e => e.SquishId).HasColumnName("SquishID");
 
                 entity.Property(e => e.Description).HasMaxLength(200);
 
                 entity.Property(e => e.Price).HasColumnType("money");
 
-                entity.Property(e => e.SpeciesId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("SpeciesID");
+                entity.Property(e => e.SpeciesId).HasColumnName("SpeciesID");
 
                 entity.Property(e => e.SquishColor).HasMaxLength(50);
+
+                entity.Property(e => e.SquishPic).HasMaxLength(100);
 
                 entity.Property(e => e.SquishSize).HasMaxLength(50);
 
@@ -223,7 +213,7 @@ namespace Squish.DATA.EF.Models
                 entity.Property(e => e.StatusId).HasColumnName("StatusID");
 
                 entity.HasOne(d => d.Species)
-                    .WithMany(p => p.SquishInformation)
+                    .WithMany(p => p.SquishInformations)
                     .HasForeignKey(d => d.SpeciesId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Squish_SquishSpecies1");
@@ -238,9 +228,7 @@ namespace Squish.DATA.EF.Models
             {
                 entity.HasKey(e => e.SpeciesId);
 
-                entity.Property(e => e.SpeciesId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("SpeciesID");
+                entity.Property(e => e.SpeciesId).HasColumnName("SpeciesID");
 
                 entity.Property(e => e.SpeciesDescription).HasMaxLength(50);
 
@@ -251,9 +239,7 @@ namespace Squish.DATA.EF.Models
             {
                 entity.ToTable("Status");
 
-                entity.Property(e => e.StatusId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("StatusID");
+                entity.Property(e => e.StatusId).HasColumnName("StatusID");
             });
 
             modelBuilder.Entity<UserAccountInfo>(entity =>

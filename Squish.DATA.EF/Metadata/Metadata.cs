@@ -33,6 +33,7 @@ namespace Squish.DATA.EF//.Metadata
 
         [Required (ErrorMessage = "Your squish must have a name!")]
         [StringLength(150)]
+        [Display(Name = "Squish Name")]
         public string SquishName { get; set; }
 
 
@@ -46,12 +47,14 @@ namespace Squish.DATA.EF//.Metadata
         public string? Descritption { get; set; }
 
         
-        public int Seasonalid { get; set; } //FK
+     
 
         [StringLength (50)]
+        [Display(Name ="Size of Squish")]
         public string? SquishSize { get; set; }
 
         [StringLength(50)]
+        [Display(Name ="Squish Color")]
         public string? SquishColor { get; set; }
             
 

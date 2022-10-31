@@ -1,4 +1,5 @@
-﻿@model Squish.DATA.EF.Models.SquishInformation
+﻿@using System.ComponentModel.DataAnnotations.Schema
+@model Squish.DATA.EF.Models.SquishInformation
 
 @{
     ViewData["Title"] = "Create";
@@ -10,13 +11,13 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+        @*    <div class="form-group">
                 <label asp-for="SquishId" class="control-label"></label>
                 <input asp-for="SquishId" class="form-control" />
                 <span asp-validation-for="SquishId" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Squishname" class="control-label"></label>
                 <input asp-for="Squishname" class="form-control" />
@@ -26,11 +27,6 @@
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Seasonalid" class="control-label"></label>
-                <input asp-for="Seasonalid" class="form-control" />
-                <span asp-validation-for="Seasonalid" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SquishSize" class="control-label"></label>
@@ -48,8 +44,15 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StatusId" class="control-label"></label>
-                <select asp-for="StatusId" class ="form-control" asp-items="ViewBag.StatusId"></select>
+                <label asp-for="SpeciesId" class="control-label">Species</label>
+                <select asp-for="SpeciesId" class="form-control" asp-items="ViewBag.SpeciesId"></select>
+            </div>
+
+            <div class="form-group">
+            <label asp-for="SquishPic" class="control-label"></label>
+            @*<input type="file" asp-for="IFormFile.Image" />*@
+            <input type="file" asp-for="Image"/>
+            <span asp-validation-for="SquishPic" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
