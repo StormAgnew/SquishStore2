@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
@@ -33,12 +32,11 @@ namespace Squish.UI.MVC.Areas.Identity.Pages.Account
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IUserEmailStore<IdentityUser> emailStore,
             IEmailSender emailSender)
         {
-            _emailStore = GetEmailStore();
-            _userStore = userStore;
             _userManager = userManager;
+            _userStore = userStore;
+            _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
@@ -47,7 +45,7 @@ namespace Squish.UI.MVC.Areas.Identity.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
-        public string ReturnUrl { get; set; }
+        public string? ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
@@ -71,24 +69,26 @@ namespace Squish.UI.MVC.Areas.Identity.Pages.Account
 
             [Required]
             [StringLength(50)]
-            [Display(Name ="First Name")]
-            public string FirstName { get; set; }
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; } = null!;
 
             [Required]
             [StringLength(50)]
-            [Display(Name ="Last Name")]
-            public string LastName { get; set; }
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; } = null!;
 
             [Required]
             [StringLength(250)]
-            public string Address { get; set; }
+            public string Address { get; set; } = null!;
 
             [Required]
             [StringLength(50)]
-            public string City { get; set; }
+            public string City { get; set; } = null!;
 
+            [StringLength(2, ErrorMessage = "Max 2 chars")]
             public string? State { get; set; }
 
+            [StringLength(5, ErrorMessage = "Max 5 chars")]
             public string? ZipCode { get; set; }
 
 
@@ -106,7 +106,7 @@ namespace Squish.UI.MVC.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-           if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var user = CreateUser();
 
@@ -124,7 +124,7 @@ namespace Squish.UI.MVC.Areas.Identity.Pages.Account
 
                     UserAccountInfo userAccountInfo = new UserAccountInfo()
                     {
-                        UserId = userId, 
+                        UserId = userId,
                         FirstName = Input.FirstName,
                         LastName = Input.LastName,
                         Address = Input.Address,

@@ -1,0 +1,132 @@
+﻿
+@model IPagedList<Squish.DATA.EF.Models.SquishInformation>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+
+@{
+    ViewData["Title"] = "Shop Gadgets";
+}
+
+
+
+<!-- product section -->
+<section class="product_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Shop <span>Gadgets</span>
+            </h2>
+        </div>
+
+        <p align="center">
+            @if (User.IsInRole("Admin"))
+            {
+                <span>
+                    <a asp-action="Create">Add New Squsih</a> |
+                    
+                </span>
+            }
+            <a asp-action="Index">Table View</a>
+        </p>
+
+        <div class="row">
+
+            @*
+            Search - Step 1
+            - Add the <form>
+            - Add the <input> textbox
+            - Add the <input> submit
+            *@
+
+            <div class="offset-3 col-sm-6">
+                <form asp-action="TiledProducts" method="get">
+
+                    @*
+                    DDL - Step 2
+                    *@
+                    <label for="speciesId" class="control-label d-block text-center">Filter by Species</label>
+                    <select name="SquishID" onchange="this.form.submit()" class="form-control text-center mb-3" asp-items="ViewBag.SquishID">
+                        <option value="0">[Choose a Category]</option>
+                    </select>
+
+                    @*
+                    The 'name' attribute of this textbox MUST match the parameter name in the TiledProducts() action
+                    *@
+                    <input type="text" name="searchTerm" placeholder="Search products" class="form-control text-center" value="@ViewBag.SearchTerm" />
+                    <input type="submit" value="Apply Filters" class="btn btn-primary text-center w-50 d-block" />
+                </form>
+
+                @if (ViewBag.NbrResults != null)
+                {
+                    <p class="mt-5 p-2 alert-warning text-center">
+                        Showing @ViewBag.NbrResults result@(ViewBag.NbrResults > 1 ? "s" : "") for '@ViewBag.SearchTerm'...
+                    </p>
+                }
+
+            </div>
+
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-4">
+                    <div class="box">
+                        <div class="option_container">
+                            <div class="options">
+                                <a asp-action="Details" asp-route-id="@item.SquishId" class="option1">
+                                    @item.Squishname
+                                </a>
+                                @*@if (item.UnitsInStock > 0)
+                                {
+                                    <a asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id="@item.SquishId" class="option2">
+                                        Add To Cart
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a disabled="true" class="option2">
+                                        Out of Stock
+                                    </a>
+                                }*@
+
+                            </div>
+                        </div>
+                        <div class="img-box">
+                            <img src="~/images/@item.SquishPic" alt="@item.Description">
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                @item.Squishname
+                            </h5>
+                            <h6>
+                               @* @Html.DisplayFor(modelItem => item.Price)*@
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+        </div>
+
+        @*
+        Paged List - Step 6
+        *@
+       @*<div class="row mt-5">
+            <div class="mx-auto text-center">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                <div class="w-100">
+                    @Html.PagedListPager(Model, page => Url.Action("TiledProducts", new {page, searchTerm = ViewBag.SearchTerm, squishId = ViewBag.squishId}))
+                </div>
+            </div>
+        </div>*@
+
+
+        <div class="btn-box">
+            <a asp-action="TiledProducts">
+                View All products
+            </a>
+        </div>
+    </div>
+</section>
+<!-- end product section -->

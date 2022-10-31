@@ -1,14 +1,25 @@
 ﻿@model IEnumerable<Squish.DATA.EF.Models.SquishInformation>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Shop for Squish!";
 }
 
 <h1>Index</h1>
-
+@if(User.IsInRole("Admin")){
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+}
+<section class="product_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <p align="center">
+          @*  <a asp-action="TiledProducts">Tile View</a>*@
+            </p>
+        </div>
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -18,12 +29,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Seasonalid)
-            </th>
-            <th>
+           
+           @* <th>
                 @Html.DisplayNameFor(model => model.SquishSize)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.SquishColor)
             </th>
@@ -33,9 +42,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Species)
             </th>
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.Status)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -48,12 +57,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Seasonalid)
-            </td>
-            <td>
+           
+            @*<td>
                 @Html.DisplayFor(modelItem => item.SquishSize)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.SquishColor)
             </td>
@@ -63,15 +70,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Species.SpeciesName)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Status.StatusId)
-            </td>
+            </td>*@
+            
+        
+            @if (User.IsInRole("Admin")){
             <td>
                 <a asp-action="Edit" asp-route-id="@item.SquishId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.SquishId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.SquishId">Delete</a>
             </td>
+            }
         </tr>
 }
     </tbody>
-</table>
+        </table>
+    </div>
+</section>

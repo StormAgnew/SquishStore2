@@ -15,7 +15,7 @@ namespace Squish.DATA.EF.Models
         public int OrderId { get; set; }
         public string UserId { get; set; } = null!;
 
-        public virtual Order? Order { get; set; } = null!;
-        public virtual UserAccountInfo? User { get; set; } = null!;
+        public virtual Order? Order { get; set; }
+        public virtual UserAccountInfo? User { get; set; }
     }
 }
